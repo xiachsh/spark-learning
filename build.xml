@@ -1,0 +1,23 @@
+<project name="xiachsh">
+
+        <path id="all">
+                        <pathelement path="/opt/apache/hadoop-2.7.0/share/hadoop/hdfs/hadoop-hdfs-2.7.0.jar" />
+                        <pathelement path="/opt/apache/hadoop-2.7.0/share/hadoop/common/hadoop-common-2.7.0.jar" />
+                        	
+			<fileset dir="/opt/apache/spark-1.4.0-bin-hadoop2.6/lib/"  includes="*.jar" />
+        </path>
+        <target name="clean">
+                <delete dir="build/classes" />
+        </target>
+
+        <target name="compile">
+                <mkdir dir="build/classes" />
+                <javac srcdir="src" destdir="build/classes" classpathref="all" debug="on" />
+        </target>
+
+        <target name="jar" depends="compile" >
+                <mkdir dir="build/jar" />
+                <jar destfile="build/jar/test.jar" basedir="build/classes" />
+        </target>
+
+</project>
